@@ -9,9 +9,7 @@ const terryPratchett = {
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  experimental: {
-    outputStandalone: true
-  },
+  output: 'standalone',
   images: {
     domains: ['raw.githubusercontent.com'],
   },

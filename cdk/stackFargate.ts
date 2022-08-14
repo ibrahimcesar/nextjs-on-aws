@@ -19,17 +19,6 @@ class SimpleFargate extends Stack {
       vpc,
     });
 
-    new DockerImageAsset(this, "BuildImageNextjs", {
-      directory: ".",
-      buildArgs: {
-        platform: "linux/amd64",
-      },
-    });
-
-    const repository = new ecr.Repository(this, "RepoNextjs", {
-      imageScanOnPush: true,
-    });
-
     new ecs_patterns.ApplicationLoadBalancedFargateService(
       this,
       "FargateService",
@@ -40,7 +29,7 @@ class SimpleFargate extends Stack {
         memoryLimitMiB: 1024,
         publicLoadBalancer: true,
         taskImageOptions: {
-          image: ecs.ContainerImage.fromEcrRepository(repository),
+          image: ecs.ContainerImage.fromAsset("."),
           containerPort: 80,
           enableLogging: true,
         },
