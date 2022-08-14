@@ -1,10 +1,11 @@
 import { App } from "aws-cdk-lib";
-import { SimpleFargate } from "./stack";
+import { SimpleFargate } from "./stackFargate";
 
 const app = new App();
-new SimpleFargate(app, "SimpleFargate", {
-  description: "PoC Fargate",
-  stackName: "SimpleStackForFargate",
+
+new SimpleFargate(app, "FargateStack", {
+  description: "PoC NextJS and Fargate",
+  stackName: "FargateNextjs",
 });
 
 app.synth();

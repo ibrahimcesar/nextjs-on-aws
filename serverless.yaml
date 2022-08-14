@@ -1,0 +1,13 @@
+app: nextjs
+service: nextjs
+org: ibrahimcesarsls
+# Serverless Framework
+
+webapp:
+  component: "@sls-next/serverless-component@3.7.0"
+
+provider:
+  name: aws
+  region: us-east-2
+  stage: dev
+  profile: sandbox

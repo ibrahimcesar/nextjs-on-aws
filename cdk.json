@@ -1,3 +1,4 @@
 {
-  "app": "ts-node ./cdk/setup.ts"
+  "app": "npx ts-node cdk/setup.ts",
+  "profile": "sandbox"
 }

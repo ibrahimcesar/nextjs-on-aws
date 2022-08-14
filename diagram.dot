@@ -1,0 +1,192 @@
+digraph "Diagram" {
+  splines = "ortho";
+  pad = "1.0";
+  nodesep = "0.60";
+  ranksep = "0.75";
+  fontname = "Sans-Serif";
+  fontsize = "15";
+  dpi = "200";
+  rankdir = "BT";
+  compound = "true";
+  fontcolor = "#222222";
+  edge [
+    color = "#D5871488",
+    penwidth = 2,
+    arrowhead = "dot",
+    arrowtail = "dot",
+  ];
+  node [
+    shape = "box",
+    style = "rounded",
+    fixedsize = true,
+    width = 1.7,
+    height = 1.7,
+    labelloc = "c",
+    imagescale = true,
+    fontname = "Sans-Serif",
+    fontsize = 8,
+    margin = 8,
+  ];
+  subgraph "SimpleFargate" {
+    subgraph "cluster-SubGraph.SimpleFargate" {
+      graph [
+        label = "SimpleFargate",
+        labelloc = "b",
+        labeljust = "l",
+        margin = "10",
+        fontsize = "16",
+        penwidth = "2",
+        pencolor = "#888888",
+        style = "filled,rounded",
+        fillcolor = "#e4e4e4",
+      ];
+      "SimpleFargate/FargateVpc" [
+        label = " FargateVpc",
+        fontsize = 12,
+        image = "/Users/ibrahim/.npm/_npx/b98735c91b702b55/node_modules/cdk-dia/icons/aws/Service/Arch_Networking-Content/64/Arch_Amazon-Virtual-Private-Cloud_64@5x.png",
+        imagescale = "true",
+        imagepos = "tc",
+        penwidth = "0",
+        shape = "node",
+        fixedsize = "true",
+        labelloc = "b",
+        width = 2,
+        height = 2.266,
+      ];
+      "SimpleFargate/FargateCluster" [
+        label = " FargateCluster",
+        fontsize = 12,
+        image = "/Users/ibrahim/.npm/_npx/b98735c91b702b55/node_modules/cdk-dia/icons/aws/Service/Arch_Compute/64/Arch_Amazon-Elastic-Container-Service_64@5x.png",
+        imagescale = "true",
+        imagepos = "tc",
+        penwidth = "0",
+        shape = "node",
+        fixedsize = "true",
+        labelloc = "b",
+        width = 2,
+        height = 2.266,
+      ];
+      "SimpleFargate/FargateRepo" [
+        label = " FargateRepo",
+        fontsize = 12,
+        image = "/Users/ibrahim/.npm/_npx/b98735c91b702b55/node_modules/cdk-dia/icons/aws/Service/Arch_Compute/64/Arch_Amazon-Elastic-Container-Registry_64@5x.png",
+        imagescale = "true",
+        imagepos = "tc",
+        penwidth = "0",
+        shape = "node",
+        fixedsize = "true",
+        labelloc = "b",
+        width = 1.2,
+        height = 1.466,
+      ];
+      subgraph "cluster-SubGraph.FargateService" {
+        graph [
+          label = "FargateService",
+          labelloc = "b",
+          labeljust = "l",
+          margin = "10",
+          fontsize = "16",
+          penwidth = "2",
+          pencolor = "#888888",
+          style = "filled,rounded",
+          fillcolor = "#d6d6d6",
+        ];
+        "SimpleFargate/FargateService/LB" [
+          label = " LB",
+          fontsize = 12,
+          image = "/Users/ibrahim/.npm/_npx/b98735c91b702b55/node_modules/cdk-dia/icons/aws/Service/Arch_Networking-Content/64/Arch_Elastic-Load-Balancing_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 2,
+          height = 2.266,
+        ];
+        "SimpleFargate/FargateService/TaskDef" [
+          label = " TaskDef",
+          fontsize = 12,
+          image = "/Users/ibrahim/.npm/_npx/b98735c91b702b55/node_modules/cdk-dia/icons/aws/Resource/Res_Containers/Res_48_Dark/Res_Amazon-Elastic-Container-Service_Task_48_Dark_gen.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 2,
+          height = 2.266,
+        ];
+        subgraph "cluster-SubGraph.Service" {
+          graph [
+            label = "Service",
+            labelloc = "b",
+            labeljust = "l",
+            margin = "10",
+            fontsize = "16",
+            penwidth = "2",
+            pencolor = "#888888",
+            style = "filled,rounded",
+            fillcolor = "#c7c7c7",
+          ];
+          "SimpleFargate/FargateService/Service/Service" [
+            label = " ECS Service Service",
+            fontsize = 12,
+            image = "/Users/ibrahim/.npm/_npx/b98735c91b702b55/node_modules/cdk-dia/icons/aws/Resource/Res_Containers/Res_48_Dark/Res_Amazon-Elastic-Container-Service_Service_48_Dark_gen.png",
+            imagescale = "true",
+            imagepos = "tc",
+            penwidth = "0",
+            shape = "node",
+            fixedsize = "true",
+            labelloc = "b",
+            width = 2,
+            height = 2.266,
+          ];
+          "SimpleFargate/FargateService/Service/SecurityGroup" [
+            label = " SecurityGroup",
+            fontsize = 12,
+            image = "/Users/ibrahim/.npm/_npx/b98735c91b702b55/node_modules/cdk-dia/icons/aws/security_group.png",
+            imagescale = "true",
+            imagepos = "tc",
+            penwidth = "0",
+            shape = "node",
+            fixedsize = "true",
+            labelloc = "b",
+            width = 2,
+            height = 2.266,
+          ];
+        }
+      }
+    }
+  }
+  "SimpleFargate/FargateService/LB" -> "SimpleFargate/FargateVpc" [
+    dir = "both",
+  ];
+  "SimpleFargate/FargateService/LB" -> "SimpleFargate/FargateService/Service/SecurityGroup" [
+    dir = "both",
+  ];
+  "SimpleFargate/FargateService/TaskDef" -> "SimpleFargate/FargateRepo" [
+    dir = "both",
+  ];
+  "SimpleFargate/FargateService/Service/Service" -> "SimpleFargate/FargateVpc" [
+    dir = "both",
+  ];
+  "SimpleFargate/FargateService/Service/Service" -> "SimpleFargate/FargateCluster" [
+    dir = "both",
+  ];
+  "SimpleFargate/FargateService/Service/Service" -> "SimpleFargate/FargateService/LB" [
+    dir = "both",
+  ];
+  "SimpleFargate/FargateService/Service/Service" -> "SimpleFargate/FargateService/TaskDef" [
+    dir = "both",
+  ];
+  "SimpleFargate/FargateService/Service/Service" -> "SimpleFargate/FargateService/Service/SecurityGroup" [
+    dir = "both",
+  ];
+  "SimpleFargate/FargateService/Service/SecurityGroup" -> "SimpleFargate/FargateVpc" [
+    dir = "both",
+  ];
+  "SimpleFargate/FargateService/Service/SecurityGroup" -> "SimpleFargate/FargateService/LB" [
+    dir = "both",
+  ];
+}
