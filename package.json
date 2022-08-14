@@ -9,15 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "cdk-ecr-deployment": "^2.5.5",
     "next": "11.1.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "redaxios": "^0.5.0"
   },
   "devDependencies": {
-    "@types/node": "18.7.2",
-    "@types/react": "18.0.17",
-    "@types/react-dom": "18.0.6",
+    "@types/node": "18.7.3",
+    "@types/react": "17.0.2",
+    "@types/react-dom": "17.0.2",
     "aws-cdk-lib": "^2.37.1",
     "constructs": "^10.1.74",
     "eslint": "8.21.0",
