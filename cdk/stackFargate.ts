@@ -32,11 +32,6 @@ class SimpleFargate extends Stack {
       removalPolicy: RemovalPolicy.DESTROY,
     });
 
-    new ecrDeploy.ECRDeployment(this, "DeployDockerImage", {
-      src: new ecrDeploy.DockerImageName(image.imageUri),
-      dest: new ecrDeploy.DockerImageName(`${repository.repositoryUri}:latest`),
-    });
-
     new ecs_patterns.ApplicationLoadBalancedFargateService(
       this,
       "FargateService",
