@@ -1,7 +1,6 @@
 import { Construct } from "constructs";
 import { RemovalPolicy, Stack, StackProps } from "aws-cdk-lib";
 import { DockerImageAsset } from "aws-cdk-lib/aws-ecr-assets";
-import * as ecrDeploy from "cdk-ecr-deployment";
 
 import * as ec2 from "aws-cdk-lib/aws-ec2";
 import * as ecs from "aws-cdk-lib/aws-ecs";
