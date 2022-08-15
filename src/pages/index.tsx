@@ -3,6 +3,10 @@ import Link from "next/link"
 import Button from "@/components/button"
 import Spacer from "@/components/spacer"
 
+import awsExports from '../aws-exports';
+import { Amplify } from 'aws-amplify';
+
+Amplify.configure({ ...awsExports, ssr: true });
 
 const PokemonsPage = () => {
 
