@@ -2,7 +2,7 @@
 
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
+  swcMinify: false,
   output: 'standalone',
   images: {
     domains: ['raw.githubusercontent.com'],

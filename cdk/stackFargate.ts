@@ -1,7 +1,6 @@
 import { Construct } from "constructs";
 import { RemovalPolicy, Stack, StackProps } from "aws-cdk-lib";
 import { DockerImageAsset } from "aws-cdk-lib/aws-ecr-assets";
-import * as ecrDeploy from "cdk-ecr-deployment";
 
 import * as ec2 from "aws-cdk-lib/aws-ec2";
 import * as ecs from "aws-cdk-lib/aws-ecs";
@@ -20,7 +19,7 @@ class SimpleFargate extends Stack {
       vpc,
     });
 
-    const image = new DockerImageAsset(this, "BuildImageNextjs", {
+    new DockerImageAsset(this, "BuildImageNextjs", {
       directory: ".",
       buildArgs: {
         platform: "linux/amd64",
@@ -29,13 +28,6 @@ class SimpleFargate extends Stack {
 
     const repository = new ecr.Repository(this, "RepoNextjs", {
       imageScanOnPush: true,
-      repositoryName: "Nextjs",
-      removalPolicy: RemovalPolicy.DESTROY,
-    });
-
-    new ecrDeploy.ECRDeployment(this, "DeployDockerImage", {
-      src: new ecrDeploy.DockerImageName(image.imageUri),
-      dest: new ecrDeploy.DockerImageName(`${repository.repositoryUri}:latest`),
     });
 
     new ecs_patterns.ApplicationLoadBalancedFargateService(
